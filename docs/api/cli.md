@@ -139,6 +139,7 @@ The `.mode` command may be used to change the appearance of the tables returned 
 * html
 * insert
 * json
+* jsonlines
 * line
 * list
 * markdown
@@ -180,6 +181,17 @@ D SELECT 1 AS col_1, 2 AS col_2
 col_1|col_2
 1|2
 10|20
+```
+
+## Prepared Statements
+The DuckDB CLI supports executing prepared statements in addition to normal `SELECT` statements. To create a prepared
+statement, use the `PREPARE` statement
+```sql
+D PREPARE S1 AS SELECT * FROM my_table WHERE my_column < $1 OR my_column > $2;
+```
+To run the prepared statement with parameters, use the `EXECUTE` statement
+```sql
+D EXECUTE S1(42, 101);
 ```
 
 ## Querying the Database Schema

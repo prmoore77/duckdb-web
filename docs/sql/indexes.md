@@ -16,7 +16,7 @@ Joins on columns with an ART index can make use of the [index join algorithm](ht
 ## Persistence
 
 * Min-max indexes are persisted.
-* Currently, ART indexes are [not persisted](https://github.com/duckdb/duckdb/issues/693). Unique and primary key indexes are rebuilt upon startup, while user-defined indexes are discarded.
+* ART indexes are [persisted as of the latest development release](https://github.com/duckdb/duckdb/pull/4022).
 
 ## Create Index
 
@@ -45,7 +45,7 @@ CREATE INDEX revenue_idx ON films (revenue);
 -- Create compound index 'gy_idx' on genre and year columns.
 CREATE INDEX gy_idx ON films (genre, year);
 -- Create index 'i_index' on the expression of the sum of columns j and k from table integers.
-CREATE INDEX i_index ON integers ((j+k))
+CREATE INDEX i_index ON integers ((j+k));
 ```
 
 ## Drop Index
