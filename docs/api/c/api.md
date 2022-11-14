@@ -55,6 +55,7 @@ selected: API Reference
 <span class="kt">duckdb_interval</span> <span class="nf"><a href="#duckdb_value_interval">duckdb_value_interval</a></span>(<span class="kt">duckdb_result</span> *<span class="k">result</span>, <span class="kt">idx_t</span> <span class="k">col</span>, <span class="kt">idx_t</span> <span class="k">row</span>);
 <span class="kt">char</span> *<span class="nf"><a href="#duckdb_value_varchar">duckdb_value_varchar</a></span>(<span class="kt">duckdb_result</span> *<span class="k">result</span>, <span class="kt">idx_t</span> <span class="k">col</span>, <span class="kt">idx_t</span> <span class="k">row</span>);
 <span class="kt">char</span> *<span class="nf"><a href="#duckdb_value_varchar_internal">duckdb_value_varchar_internal</a></span>(<span class="kt">duckdb_result</span> *<span class="k">result</span>, <span class="kt">idx_t</span> <span class="k">col</span>, <span class="kt">idx_t</span> <span class="k">row</span>);
+<span class="k">duckdb_string</span> <span class="nf"><a href="#duckdb_value_string_internal">duckdb_value_string_internal</a></span>(<span class="kt">duckdb_result</span> *<span class="k">result</span>, <span class="kt">idx_t</span> <span class="k">col</span>, <span class="kt">idx_t</span> <span class="k">row</span>);
 <span class="kt">duckdb_blob</span> <span class="nf"><a href="#duckdb_value_blob">duckdb_value_blob</a></span>(<span class="kt">duckdb_result</span> *<span class="k">result</span>, <span class="kt">idx_t</span> <span class="k">col</span>, <span class="kt">idx_t</span> <span class="k">row</span>);
 <span class="kt">bool</span> <span class="nf"><a href="#duckdb_value_is_null">duckdb_value_is_null</a></span>(<span class="kt">duckdb_result</span> *<span class="k">result</span>, <span class="kt">idx_t</span> <span class="k">col</span>, <span class="kt">idx_t</span> <span class="k">row</span>);
 </code></pre></div></div>
@@ -74,6 +75,7 @@ selected: API Reference
 ### **Hugeint Helpers**
 <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">double</span> <span class="nf"><a href="#duckdb_hugeint_to_double">duckdb_hugeint_to_double</a></span>(<span class="kt">duckdb_hugeint</span> <span class="k">val</span>);
 <span class="kt">duckdb_hugeint</span> <span class="nf"><a href="#duckdb_double_to_hugeint">duckdb_double_to_hugeint</a></span>(<span class="kt">double</span> <span class="k">val</span>);
+<span class="k">duckdb_decimal</span> <span class="nf"><a href="#duckdb_double_to_decimal">duckdb_double_to_decimal</a></span>(<span class="kt">double</span> <span class="k">val</span>, <span class="kt">uint8_t</span> <span class="k">width</span>, <span class="kt">uint8_t</span> <span class="k">scale</span>);
 </code></pre></div></div>
 ### **Decimal Helpers**
 <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">double</span> <span class="nf"><a href="#duckdb_decimal_to_double">duckdb_decimal_to_double</a></span>(<span class="k">duckdb_decimal</span> <span class="k">val</span>);
@@ -91,6 +93,7 @@ selected: API Reference
 <span class="kt">duckdb_state</span> <span class="nf"><a href="#duckdb_bind_int32">duckdb_bind_int32</a></span>(<span class="kt">duckdb_prepared_statement</span> <span class="k">prepared_statement</span>, <span class="kt">idx_t</span> <span class="k">param_idx</span>, <span class="kt">int32_t</span> <span class="k">val</span>);
 <span class="kt">duckdb_state</span> <span class="nf"><a href="#duckdb_bind_int64">duckdb_bind_int64</a></span>(<span class="kt">duckdb_prepared_statement</span> <span class="k">prepared_statement</span>, <span class="kt">idx_t</span> <span class="k">param_idx</span>, <span class="kt">int64_t</span> <span class="k">val</span>);
 <span class="kt">duckdb_state</span> <span class="nf"><a href="#duckdb_bind_hugeint">duckdb_bind_hugeint</a></span>(<span class="kt">duckdb_prepared_statement</span> <span class="k">prepared_statement</span>, <span class="kt">idx_t</span> <span class="k">param_idx</span>, <span class="kt">duckdb_hugeint</span> <span class="k">val</span>);
+<span class="kt">duckdb_state</span> <span class="nf"><a href="#duckdb_bind_decimal">duckdb_bind_decimal</a></span>(<span class="kt">duckdb_prepared_statement</span> <span class="k">prepared_statement</span>, <span class="kt">idx_t</span> <span class="k">param_idx</span>, <span class="k">duckdb_decimal</span> <span class="k">val</span>);
 <span class="kt">duckdb_state</span> <span class="nf"><a href="#duckdb_bind_uint8">duckdb_bind_uint8</a></span>(<span class="kt">duckdb_prepared_statement</span> <span class="k">prepared_statement</span>, <span class="kt">idx_t</span> <span class="k">param_idx</span>, <span class="kt">uint8_t</span> <span class="k">val</span>);
 <span class="kt">duckdb_state</span> <span class="nf"><a href="#duckdb_bind_uint16">duckdb_bind_uint16</a></span>(<span class="kt">duckdb_prepared_statement</span> <span class="k">prepared_statement</span>, <span class="kt">idx_t</span> <span class="k">param_idx</span>, <span class="kt">uint16_t</span> <span class="k">val</span>);
 <span class="kt">duckdb_state</span> <span class="nf"><a href="#duckdb_bind_uint32">duckdb_bind_uint32</a></span>(<span class="kt">duckdb_prepared_statement</span> <span class="k">prepared_statement</span>, <span class="kt">idx_t</span> <span class="k">param_idx</span>, <span class="kt">uint32_t</span> <span class="k">val</span>);
@@ -1200,10 +1203,13 @@ The duckdb_interval value at the specified location, or 0 if the value cannot be
 </code></pre></div></div>
 #### **Parameters**
 ---
+* `DEPRECATED`
+
+use duckdb_value_string instead. This function does not work correctly if the string contains null bytes.
 * `returns`
 
-The char* value at the specified location, or nullptr if the value cannot be converted.
-The result must be freed with `duckdb_free`.
+The text value at the specified location as a null-terminated string, or nullptr if the value cannot be
+converted. The result must be freed with `duckdb_free`.
 
 <br>
 
@@ -1219,6 +1225,35 @@ The result must be freed with `duckdb_free`.
 </code></pre></div></div>
 #### **Parameters**
 ---
+* `DEPRECATED`
+
+use duckdb_value_string_internal instead. This function does not work correctly if the string contains
+null bytes.
+* `returns`
+
+The char* value at the specified location. ONLY works on VARCHAR columns and does not auto-cast.
+If the column is NOT a VARCHAR column this function will return NULL.
+
+The result must NOT be freed.
+
+<br>
+
+### **duckdb_value_string_internal**
+---
+#### **Syntax**
+---
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">duckdb_string</span> <span class="k">duckdb_value_string_internal</span>(<span class="k">
+</span>  <span class="kt">duckdb_result</span> *<span class="k">result</span>,<span class="k">
+</span>  <span class="kt">idx_t</span> <span class="k">col</span>,<span class="k">
+</span>  <span class="kt">idx_t</span> <span class="k">row
+</span>);
+</code></pre></div></div>
+#### **Parameters**
+---
+* `DEPRECATED`
+
+use duckdb_value_string_internal instead. This function does not work correctly if the string contains
+null bytes.
 * `returns`
 
 The char* value at the specified location. ONLY works on VARCHAR columns and does not auto-cast.
@@ -1494,6 +1529,31 @@ The converted `duckdb_hugeint` element.
 
 <br>
 
+### **duckdb_double_to_decimal**
+---
+Converts a double value to a duckdb_decimal object.
+
+If the conversion fails because the double value is too big, or the width/scale are invalid the result will be 0.
+
+#### **Syntax**
+---
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">duckdb_decimal</span> <span class="k">duckdb_double_to_decimal</span>(<span class="k">
+</span>  <span class="kt">double</span> <span class="k">val</span>,<span class="k">
+</span>  <span class="kt">uint8_t</span> <span class="k">width</span>,<span class="k">
+</span>  <span class="kt">uint8_t</span> <span class="k">scale
+</span>);
+</code></pre></div></div>
+#### **Parameters**
+---
+* `val`
+
+The double value.
+* `returns`
+
+The converted `duckdb_decimal` element.
+
+<br>
+
 ### **duckdb_decimal_to_double**
 ---
 Converts a duckdb_decimal object (as obtained from a `DUCKDB_TYPE_DECIMAL` column) into a double.
@@ -1730,6 +1790,20 @@ Binds an duckdb_hugeint value to the prepared statement at the specified index.
 </span>  <span class="kt">duckdb_prepared_statement</span> <span class="k">prepared_statement</span>,<span class="k">
 </span>  <span class="kt">idx_t</span> <span class="k">param_idx</span>,<span class="k">
 </span>  <span class="kt">duckdb_hugeint</span> <span class="k">val
+</span>);
+</code></pre></div></div>
+<br>
+
+### **duckdb_bind_decimal**
+---
+Binds a duckdb_decimal value to the prepared statement at the specified index.
+
+#### **Syntax**
+---
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">duckdb_state</span> <span class="k">duckdb_bind_decimal</span>(<span class="k">
+</span>  <span class="kt">duckdb_prepared_statement</span> <span class="k">prepared_statement</span>,<span class="k">
+</span>  <span class="kt">idx_t</span> <span class="k">param_idx</span>,<span class="k">
+</span>  <span class="k">duckdb_decimal</span> <span class="k">val
 </span>);
 </code></pre></div></div>
 <br>
